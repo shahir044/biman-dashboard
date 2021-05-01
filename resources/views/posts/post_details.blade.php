@@ -2,11 +2,15 @@
 
 @section('content')
     <a href="/posts" class="btn btn-success">Back</a>
+    <br><br><br>
+    <img style="width:50%" src="/storage/cover_images/{{$post_details->cover_image}}" alt="">
+                    
     <hr>
     <h1>{{$post_details->title}}</h1>
     <div>
         {!!$post_details->body!!}
     </div>
+    
     <hr>
     <small><b>Written on {{\Carbon\Carbon::parse($post_details->created_at)->format('d/m/Y H:i')}} <b></small>
     <hr>

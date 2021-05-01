@@ -52,15 +52,43 @@ class PostsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'cover_iamge' => 'image|nullable',
+            //'cover_iamge' => 'image|nullable|max: 1999' /// 2mb max acc to apache sever
         ]);
 
+        /// Handle File Request
+        
+        if($request->hasFile('cover_image')){
+            /// get the file name with extension
+            $fileNameWithExt = $request->file('cover_image')->getClientOriginalName();
+
+            //only get the file name
+            $fileName = pathinfo($fileNameWithExt,PATHINFO_FILENAME); /// basic php
+
+            //get just extension
+
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+
+            /// store file name uniquely with timestamps **** IMP
+            $fileNametoStore = $fileName.'_'.time().'.'.$extension;
+            
+            //upload image save it in a folder 
+            $path = $request->file('cover_image')->storeAs('public/cover_images',$fileNametoStore);
+
+        }else{
+            $fileNametoStore = 'noimage.jpg';
+        }
+        
         /// insert into DB using ELOQUENT
 
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->user_id = auth()->user()->id;
+
+        $post->cover_image = $fileNametoStore;
+
         $post->save();
 
         return redirect('/posts')->with('success','Post Created Successfully');
@@ -109,11 +137,33 @@ class PostsController extends Controller
             'body' => 'required'
         ]);
 
+        if($request->hasFile('cover_image')){
+            /// get the file name with extension
+            $fileNameWithExt = $request->file('cover_image')->getClientOriginalName();
+
+            //only get the file name
+            $fileName = pathinfo($fileNameWithExt,PATHINFO_FILENAME); /// basic php
+
+            //get just extension
+
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+
+            /// store file name uniquely with timestamps **** IMP
+            $fileNametoStore = $fileName.'_'.time().'.'.$extension;
+            
+            //upload image save it in a folder 
+            $path = $request->file('cover_image')->storeAs('public/cover_images',$fileNametoStore);
+
+        }
+
         /// insert into DB using ELOQUENT
 
         $post = Post::find($id); /// Changed this line to find the id
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+        if($request->hasFile('cover_image')){
+            $post->cover_image = $fileNametoStore;
+        }
         $post->save();
 
         return redirect('/posts')->with('success','Post Updated Successfully'); /// Changed post updated successfully
