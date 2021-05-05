@@ -3,7 +3,7 @@
 @section('content')
 
     <h1>{{$title}}</h1>
-    <p>Services we provide are programming</p>
+    <p>Services we provide are:</p>
     <ul class="list-group">
         @foreach ($services as $item)
             <li class="list-group-item">{{$item}}</li>

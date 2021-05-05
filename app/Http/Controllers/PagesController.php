@@ -13,7 +13,7 @@ class PagesController extends Controller
      */
     public function index()
     {
-        $title = "Welcome to laravel learning";
+        $title = "Welcome to Biman IT Dashboard";
         return view('pages.index',compact('title'));
     }
     
@@ -25,7 +25,7 @@ class PagesController extends Controller
     {
         $data = array (
             'title'=>'Services',
-            'services' => ['WEB' , 'Mobile' , 'BCS']
+            'services' => ['Hardware' , 'Network' , 'Project']
         );
         return view('pages.services')->with($data);
         //return view('pages.services',compact('data'));

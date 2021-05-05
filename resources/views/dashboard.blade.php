@@ -15,7 +15,7 @@
                     @endif
 
                     <a href="/posts/create" class="btn btn-primary  mt-3 mb-3">Create Post</a>
-                    <h3>Your Blog Posts</h3>
+                    <h3>Your Posts</h3>
                     @if (count($posts)>0)
                     <table class="table table-striped">
                         <tr>
@@ -25,14 +25,15 @@
                         </tr>
                         @foreach ($posts as $post)
                             <tr>
-                                <th><a href="/posts/{{$post->id}}/edit">{{$post->title}}</a></th>
-                                <td><a href="/posts/{{$post->id}}/edit" class="btn btn-primary float-right">Edit</a></td>
+                                <th><a href="/posts/{{$post->id}}">{{$post->title}}</a></th>
+                                <td><a href="#" class="btn btn-secondary float-right">Pending</a></td>
+{{--                                 <td><a href="/posts/{{$post->id}}/edit" class="btn btn-primary float-right">Edit</a></td>
                                 <td>
                                     {!! Form::open(['action' => ['PostsController@destroy',$post->id],'method'=>'Post']) !!}
                                     {{Form::hidden('_method','DELETE')}}
                                     {{Form::submit('DELETE', ['class' => 'btn btn-danger'] )}}
                                     {!! Form::close() !!}
-                                </td>
+                                </td> --}}
                             </tr>
                         @endforeach
                     </table>

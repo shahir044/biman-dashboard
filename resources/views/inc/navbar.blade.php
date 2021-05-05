@@ -33,9 +33,18 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/posts">Blog <span class="sr-only">(current)</span></a>
-                </li>
+                @if (!Auth::guest())
+                    @if (Auth::user()->id == 3)
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/posts">Requests <span class="sr-only">(current)</span></a>
+                        </li>
+                    @else   
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
+                    </li>
+                    
+                    @endif
+                @endif        
                 {{-- <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>
@@ -57,7 +66,7 @@
             </ul>
 
             <ul class="nav navbar-nav mr-5">
-                    <li><a href="/posts/create">Create Post</a></li>
+                    <li><a href="/posts/create">Create Request</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->

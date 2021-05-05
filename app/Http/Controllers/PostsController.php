@@ -55,6 +55,12 @@ class PostsController extends Controller
             'body' => 'required',
             'cover_iamge' => 'image|nullable',
             //'cover_iamge' => 'image|nullable|max: 1999' /// 2mb max acc to apache sever
+
+            'name' => 'required',
+            'department' => 'required',
+            'building' => 'required',
+            'problem' => 'required',
+            'extension_no' => 'required'
         ]);
 
         /// Handle File Request
@@ -87,11 +93,18 @@ class PostsController extends Controller
         $post->body = $request->input('body');
         $post->user_id = auth()->user()->id;
 
+        $post->name = $request->input('name');
+        $post->department = $request->input('department');
+        $post->building = $request->input('building');
+        $post->problem = $request->input('problem');
+        $post->extension_no = $request->input('extension_no');
+        $post->mobile = $request->input('mobile');
+
         $post->cover_image = $fileNametoStore;
 
         $post->save();
 
-        return redirect('/posts')->with('success','Post Created Successfully');
+        return redirect('/dashboard')->with('success','Post Submitted Successfully');
     }
 
     /**
@@ -132,10 +145,11 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+/*         $this->validate($request, [
             'title' => 'required',
-            'body' => 'required'
-        ]);
+            'body' => 'required',
+            
+        ]); */
 
         if($request->hasFile('cover_image')){
             /// get the file name with extension
@@ -159,8 +173,10 @@ class PostsController extends Controller
         /// insert into DB using ELOQUENT
 
         $post = Post::find($id); /// Changed this line to find the id
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
+        
+        $post->assigned_person = $request->input('person');
+        $post->assigned_by = auth()->user()->name;
+        /* $post->body = $request->input('body'); */
         if($request->hasFile('cover_image')){
             $post->cover_image = $fileNametoStore;
         }

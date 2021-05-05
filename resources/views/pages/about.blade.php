@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>About Page</h1>
-    <p>About Traversy is a nice person</p>
+    <h1>About</h1>
+    <p>The life given by god has a very special meaning a value in which people sometimes forget to thank or either regret.  Many students/adults believe that they are going to be popular if they have money and a good job buy forget that people are influenced by those who have learned something.  Also a lot fail to remember, to earn value you must earn it.In today’s economy the government creates a value on the person by looking at the position they are held for. If you look at it from the society’s point of view they believe people should be given value according to what they do and what position they are. From an individual's perspective they judge themselves on what they accomplish and achieve.The value of the individual would…
+        Each individual has their own perspective on how they want their life to be. As Steve Jobs mentioned in his inaugural speech “ Don’t let the noise of others’ opinions drown out your inner voice”(89). The meaning of this quote is just do what you love and do not let anyone else tell you what to do.  In life you just have to be your own self and believe that you can and will achieve. Your life will only be worth it if you actually accomplish something you wanted to do not what others want you to do. Several high school students tend to find a job while attending school and stay with it for the rest of their life. However, what they do not realize is that they are missing out on what they actually wanted to do in life not make money with the job they hate doing. The value of life has to be interpreted throughout high school as well as college because if you do not figure it out then you will end up doing something you will regret in the future.</p>
 @endsection
